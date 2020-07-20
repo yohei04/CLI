@@ -8,7 +8,6 @@ services:
       - ./front:/front
     working_dir: /front
     command: npm start
-    tty: true
     ports:
       - 3000:3000
 
