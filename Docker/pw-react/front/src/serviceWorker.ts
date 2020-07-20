@@ -57,7 +57,7 @@ export const register = (config?: Config) => {
       }
     });
   }
-}
+};
 
 function registerValidSW(swUrl: string, config?: Config) {
   navigator.serviceWorker
@@ -132,7 +132,7 @@ const checkValidServiceWorker = (swUrl: string, config?: Config) => {
         "No internet connection found. App is running in offline mode."
       );
     });
-}
+};
 
 export function unregister() {
   if ("serviceWorker" in navigator) {
