@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   CssBaseline,
@@ -10,24 +10,47 @@ import {
   ListItemText,
 } from "@material-ui/core";
 
-import red from "@material-ui/core/colors/red";
 import { Send as SendIcon } from "@material-ui/icons";
+import { Hmac } from "crypto";
 
 interface Props {}
 
 const useStyles = makeStyles((theme) => ({
-  red: {
-    backgroundColor: red[500],
+  list: {
+    backgroundColor: theme.palette.grey[500],
   },
 }));
 
+interface Bus {
+  name: string;
+  selected: boolean;
+}
+
+interface Hitchhiker {
+  name: string;
+}
+
 const App: React.FC = (props) => {
   const classes = useStyles();
+
+  const [chatBus, setChatBus] = useState<Bus[]>([]);
+  const [hitchhikers, setHitchhikers] = useState<Hitchhiker[]>([]);
+
+  useEffect(() => {
+    // TODO websocketからデータをもらう
+    setChatBus([
+      { name: "aaa", selected: false },
+      { name: "bbb", selected: false },
+      { name: "ccc", selected: false },
+    ]);
+    setHitchhikers([{ name: "user1" }, { name: "user2" }, { name: "user3" }]);
+  }, [props]);
+
   return (
     <Container component="main" maxWidth="xl">
       <CssBaseline />
       <Grid container spacing={3}>
-        <Grid item xs={3} className={classes.red}>
+        <Grid item xs={3} className={classes.list}>
           <List
             component="nav"
             aria-labelledby="nested-list-subheader"
@@ -38,15 +61,17 @@ const App: React.FC = (props) => {
               </ListSubheader>
             }
           >
-            <ListItem button>
-              <ListItemText primary="room name" />
-            </ListItem>
+            {chatBus.map((bus) => (
+              <ListItem button>
+                <ListItemText primary={bus.name} />
+              </ListItem>
+            ))}
           </List>
         </Grid>
         <Grid item xs={6}>
           main
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={3} className={classes.list}>
           <List
             component="nav"
             aria-labelledby="nested-list-subheader"
@@ -57,9 +82,11 @@ const App: React.FC = (props) => {
               </ListSubheader>
             }
           >
-            <ListItem button>
-              <ListItemText primary="username" />
-            </ListItem>
+            {hitchhikers.map((h) => (
+              <ListItem button>
+                <ListItemText primary={h.name} />
+              </ListItem>
+            ))}
           </List>
         </Grid>
       </Grid>
