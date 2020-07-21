@@ -1,25 +1,16 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { Container, CssBaseline} from '@material-ui/core';
 
-const App: React.FC = () => {
+interface Props {
+
+}
+
+const App: React.FC = props => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      hello
+    </Container>
   );
 };
 
