@@ -17,8 +17,10 @@ services:
       - db
   front:
     build: ./front
-    command: npm start
+    command: node
     volumes: 
       - ./front:/front
-    ports:
-      - 5000:3000
+    tty: true
+    working_dir: /front
+    # ports:
+    #   - 5000:3000
