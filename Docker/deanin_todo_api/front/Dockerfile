@@ -1,7 +1,7 @@
 FROM node:12.18.2-alpine3.9
-WORKDIR /front/app
-COPY app/package.json /front/app
+WORKDIR /front
+COPY package.json /front/package.json
 RUN npm install
-COPY . /front/app
+COPY . /front
 # # EXPOSE 5000
 CMD ["npm", "start"]
