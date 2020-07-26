@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
+import U from './U';
 
 interface Product {
   id: number;
@@ -95,7 +96,7 @@ const App = () => {
   //   }
   // }, [editValue])
 
-  console.log(products);
+  // console.log(products);
 
   return (
     <div className="App">
@@ -128,19 +129,8 @@ const App = () => {
           </ul>
         ))}
       </div>
-      {products[0] ? (
-        <div>
-          <h1>{editValue}</h1>
-          <input
-            type="text"
-            value={editValue}
-            onChange={(e: any) => setEditValue(e.target.value)}
-          />
-          {/* <button onClick={} >edit</button> */}
-        </div>
-      ) : (
-        ''
-      )}
+
+      <U />
     </div>
   );
 };

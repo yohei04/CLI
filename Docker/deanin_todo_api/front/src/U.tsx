@@ -11,13 +11,26 @@ type Item = {
 const U: React.FC<UProps> = () => {
   const [value, setValue] = useState('');
   const [items, setItems] = useState<Item[]>([]);
-  const [editText, setEditText] = useState('');
+  const [editValue, setEditValue] = useState('');
 
   const handleText = (e: any) => {
     e.preventDefault();
     setItems([...items, { id: uuidv4(), text: value }]);
     setValue('');
   };
+
+  const findItem = (id: string) => {
+    const item = items.find((item) => item.id === id);
+    if (item) {
+      setEditValue(text);
+    }
+  };
+
+  const handleEdit = (e: any, id: string, text: string) => {
+    e.preventDefault();
+    const item = items.find((item) => item.id === id);
+    setItems();
+  }
 
   console.log(items);
   return (
@@ -36,7 +49,11 @@ const U: React.FC<UProps> = () => {
           <ul>
             <li>
               <span>{item.text}</span>
-              <input type="text" />
+              <input
+                type="text"
+                value={editValue}
+                onChange={(e) => setEditValue(e.target.value)}
+              />
               <button>edit</button>
             </li>
           </ul>
