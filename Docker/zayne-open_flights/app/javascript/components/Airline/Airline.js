@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Header from './Header';
+
 import axios from 'axios';
 import styled from 'styled-components';
+
+import Header from './Header';
+import ReviewForm from './ReviewForm';
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -41,22 +44,37 @@ const Airline = (props) => {
 
   console.log(airline);
 
+  const handleChange = (e) => {
+    e.preventDefault();
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <Wrapper>
-      <Column>
-        <Main>
-          {loaded && (
-            <Header
+      {loaded && (
+        <>
+          <Column>
+            <Main>
+              <Header
+                attributes={airline.data.attributes}
+                reviews={airline.included}
+              />
+
+              <div className="reviews"></div>
+            </Main>
+          </Column>
+          <Column>
+            <ReviewForm
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
               attributes={airline.data.attributes}
-              reviews={airline.included}
+              reviews={review}
             />
-          )}
-          <div className="reviews"></div>
-        </Main>
-      </Column>
-      <Column>
-        <div className="review-form">[Review Form Goes Here.]</div>
-      </Column>
+          </Column>
+        </>
+      )}
     </Wrapper>
   );
 };
