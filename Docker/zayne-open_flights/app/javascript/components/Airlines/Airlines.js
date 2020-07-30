@@ -44,8 +44,6 @@ const Airlines = () => {
     <Airline key={item.attributes.name} attributes={item.attributes}></Airline>
   ));
 
-  console.log(airlines);
-
   return (
     <Home>
       <Header>
